@@ -1,9 +1,11 @@
-
-
+// chamdando variaveis
+const progressBar = document.getElementById("progressBar");
 const buttonPlay = document.querySelector('#play');
 const buttonPause = document.querySelector('#pause');
 const tempoAtual = document.getElementById("tempoAtual");
 const tempoTotal = document.getElementById("tempoTotal");
+
+// metodo de audio
 
 const music = new Audio('./assets/Pra-onde-eu-irei.mp3');
 let interval;
@@ -17,16 +19,12 @@ function formatarTempo(segundos) {
 }
 
 function updateMusicTime() {
-  const tempoAtual = document.getElementById('tempoAtual');
-  const progressBar = document.getElementById("progressBar");
   const progresso = (music.currentTime / music.duration) * 100;
   progressBar.value = progresso;
   tempoAtual.textContent = formatarTempo(music.currentTime);
 }
 
-
 music.addEventListener('loadedmetadata', function () {
-  const tempoTotal = document.getElementById('tempoTotal');
   tempoTotal.textContent = formatarTempo(music.duration);
 });
 
@@ -34,9 +32,9 @@ function play() {
   buttonPlay.classList.add('hide');
   buttonPause.classList.remove('hide');
   music.play();
-
   interval = setInterval(updateMusicTime, 1000);
 }
+
 function pause() {
   buttonPlay.classList.remove('hide');
   buttonPause.classList.add('hide');
